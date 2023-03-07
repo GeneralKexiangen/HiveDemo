@@ -22,8 +22,14 @@ public class FormatPhone extends UDF {
         }
         if (sb.toString().contains("-")){
             String[] phones = sb.toString().split("-");
-            if (phones[0].length()<3) {
-                sb = new StringBuilder(phones[1]);
+            if (phones[0].length()<3){
+                if (phones.length>1) {
+                    sb = new StringBuilder(phones[1]);
+                }else {
+                    sb = new StringBuilder("");
+                }
+            } else if(phones[0].length()==11){
+                sb = new StringBuilder(phones[0]);
             }
         }
 
@@ -47,7 +53,7 @@ public class FormatPhone extends UDF {
 
 
     public static void main(String[] args) {
-        System.out.println(new FormatPhone().evaluate("'-134?.87  0827  \n63"));
+        System.out.println(new FormatPhone().evaluate("010-13487082762"));
     }
 
 }
